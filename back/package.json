@@ -1,5 +1,5 @@
 {
-  "name": "auth-wcs-back",
+  "name": "basic-jwt-back",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
