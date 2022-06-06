@@ -7,7 +7,7 @@ function signUp() {
         <label htmlFor="name" className="form-label">
           Name
         </label>
-        <input type="name" class="form-control" id="email" />
+        <input type="name" className="form-control" id="name" />
       </div>
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
