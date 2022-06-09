@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import bookAPI from "../services/bookAPI"
 
 import Book from "../components/Book"
 
@@ -7,8 +7,8 @@ function Books() {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/book")
+    bookAPI
+      .get("/api/book")
       .then((res) => setBooks(res.data))
       .catch((err) => console.error(err.message))
   }, [])

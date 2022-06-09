@@ -1,10 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react"
+
+import bookAPI from "../services/bookAPI"
 
 import CurrentUserContext from "../contexts/userContext"
 
 function Header() {
-  const { user } = useContext(CurrentUserContext)
+  const { user, setUser } = useContext(CurrentUserContext)
+
+  const navigate = useNavigate()
+
+  const handleDisconnection = () => {
+    bookAPI
+      .get("/api/auth/logout")
+      .then(() => {
+        localStorage.clear()
+        setUser(undefined)
+        navigate("/")
+      })
+      .catch((err) => console.error(err.message))
+  }
 
   return (
     <header>
@@ -26,22 +41,35 @@ function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/login" className="nav-link">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/signUp" className="nav-link">
-                  SignUp
-                </Link>
-              </li>
-              {user && (
-                <li className="nav-item">
-                  <Link to="/books" className="nav-link">
-                    Books
-                  </Link>
-                </li>
+              {user ? (
+                <>
+                  <li className="nav-item">
+                    <Link to="/books" className="nav-link">
+                      Books
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <button
+                      onClick={handleDisconnection}
+                      className="ml-auto btn btn-danger"
+                    >
+                      Disconnect
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link">
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/signUp" className="nav-link">
+                      SignUp
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>
