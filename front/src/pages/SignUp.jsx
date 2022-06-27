@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 import bookAPI from "../services/bookAPI"
 
+import GoogleAuthButton from "../components/GoogleAuthButton"
+
 function SignUp() {
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
@@ -61,6 +63,7 @@ function SignUp() {
       <button type="submit" className="btn btn-primary">
         Inscription
       </button>
+      <GoogleAuthButton type="Sign Up" />
     </form>
   )
 }

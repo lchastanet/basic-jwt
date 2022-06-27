@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 import CurrentUserContext from "../contexts/userContext"
 
+import GoogleAuthButton from "../components/GoogleAuthButton"
+
 import bookAPI from "../services/bookAPI"
 
 function Login() {
@@ -61,6 +63,7 @@ function Login() {
       <button type="submit" className="btn btn-primary">
         Connexion
       </button>
+      <GoogleAuthButton type="Login" />
     </form>
   )
 }
