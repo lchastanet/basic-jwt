@@ -110,6 +110,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
+ALTER TABLE `user`ADD UNIQUE (email);
+ALTER TABLE `user`MODIFY password VARCHAR(100);
+ALTER TABLE `user`ADD auth_strategy VARCHAR(100);
+
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;

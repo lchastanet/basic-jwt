@@ -1,6 +1,6 @@
 const app = require("./src/app")
 
-const port = parseInt(process.env.APP_PORT ?? "8000", 10)
+const port = parseInt(process.env.APP_PORT ?? "5500", 10)
 
 app.listen(port, (err) => {
   if (err) {

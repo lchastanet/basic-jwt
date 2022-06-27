@@ -1,17 +1,25 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import bookAPI from "../services/bookAPI"
 
 import Book from "../components/Book"
 
+import CurrentUserContext from "../contexts/userContext"
+
 function Books() {
   const [books, setBooks] = useState([])
+
+  const { setUser } = useContext(CurrentUserContext)
 
   useEffect(() => {
     bookAPI
       .get("/api/book")
-      .then((res) => setBooks(res.data))
+      .then((res) => {
+        setUser("google")
+        setBooks(res.data)
+        console.log("render")
+      })
       .catch((err) => console.error(err.message))
-  }, [])
+  }, [setUser])
 
   return (
     <div>

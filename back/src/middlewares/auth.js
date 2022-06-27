@@ -3,6 +3,10 @@ const { decodeJWT } = require("../helpers/jwtHelper")
 const authorization = (req, res, next) => {
   const token = req.cookies.auth_token
 
+  if (req.user) {
+    return next()
+  }
+
   if (!token) {
     return res.sendStatus(401)
   }

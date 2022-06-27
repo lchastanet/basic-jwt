@@ -26,5 +26,5 @@ exports.login = (req, res) => {
 }
 
 exports.logout = (req, res) => {
-  res.clearCookie("auth_token").sendStatus(200)
+  req.session.destroy(() => res.clearCookie("auth_token").sendStatus(200))
 }
